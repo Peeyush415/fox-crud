@@ -41,45 +41,33 @@ onMounted(fetchProducts);
 
 
 <template>
-	<div>
-		<h1>Product List</h1>
-		<ProductForm :product="editingProduct" @saved="onSaved"/>
-		<table class="product-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="product in products" :key="product.id">
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.stock }}</td>
-					<td>
-						<button  @click="editProduct(product)" >Edit</button>
-						-
-
-						<button  @click="deleteProduct(product.id)" >Delete</button>
-					</td>
-                </tr>
-            </tbody>
-        </table>
+	<div class="mx-auto max-w-6xl p-6">
+		<h1 class="mb-4 text-2xl font-bold text-gray-800">Product List</h1>
+		<div class="flex flex-col gap-6 md:flex-row md:items-start">
+			<div class="md:w-1/3">
+				<ProductForm :product="editingProduct" @saved="onSaved"/>
+			</div>
+			<table class="w-full overflow-hidden rounded-lg bg-white shadow-md md:w-2/3">
+				<thead class="bg-gray-100">
+					<tr>
+						<th class="border-b border-gray-200 px-4 py-2 text-left">Name</th>
+						<th class="border-b border-gray-200 px-4 py-2 text-left">Price</th>
+						<th class="border-b border-gray-200 px-4 py-2 text-left">Stock</th>
+						<th class="border-b border-gray-200 px-4 py-2 text-left">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="product in products" :key="product.id" class="hover:bg-gray-50">
+						<td class="border-b border-gray-100 px-4 py-2">{{ product.name }}</td>
+						<td class="border-b border-gray-100 px-4 py-2">{{ product.price }}</td>
+						<td class="border-b border-gray-100 px-4 py-2">{{ product.stock }}</td>
+						<td class="border-b border-gray-100 px-4 py-2 space-x-3">
+							<button @click="editProduct(product)" class="text-blue-600 hover:underline">Edit</button>
+							<button @click="deleteProduct(product.id)" class="text-red-600 hover:underline">Delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </template>
-
-
-<style>
-
-.product-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-.product-table th,
-.product-table td {
-    border: 1px solid #333;
-    padding: 8px;
-}
-</style>
