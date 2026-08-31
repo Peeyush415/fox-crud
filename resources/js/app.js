@@ -1,5 +1,9 @@
 import { createApp } from 'vue';
+import axios from 'axios';
+import App from './components/App.vue';
 
-import ProductList from './components/ProductList.vue';
+// axios.defaults.baseURL = 'http://localhost:8000/api/';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-createApp(ProductList).mount('#app');
+createApp(App).mount('#app');
